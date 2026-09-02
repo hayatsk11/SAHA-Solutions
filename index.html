@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SAHA Solutions — modern web development and software solutions for ambitious businesses." />
+  <meta name="theme-color" content="#08132f" />
+  <title>SAHA Solutions | Web & Software Development</title>
+  <link rel="icon" type="image/png" href="assets/mark.png" />
+  <style>
+    :root{
+      --navy:#08132f;
+      --navy-2:#0d1f46;
+      --ink:#10214a;
+      --muted:#66728c;
+      --line:rgba(16,33,74,.10);
+      --card:rgba(255,255,255,.78);
+      --purple:#7628e8;
+      --blue:#2d7cff;
+      --cyan:#16b6df;
+      --white:#fff;
+      --shadow:0 24px 70px rgba(8,19,47,.12);
+      --radius:24px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#f7f9fc;line-height:1.6;overflow-x:hidden}
+    a{text-decoration:none;color:inherit}
+    button{font:inherit}
+    .container{width:min(1160px,calc(100% - 40px));margin-inline:auto}
+    .blob{position:absolute;border-radius:50%;filter:blur(45px);opacity:.42;pointer-events:none;z-index:0}
+    .blob.a{width:280px;height:280px;background:rgba(118,40,232,.20);left:-120px;top:90px;animation:float 8s ease-in-out infinite}
+    .blob.b{width:360px;height:360px;background:rgba(22,182,223,.18);right:-160px;top:130px;animation:float 10s ease-in-out infinite reverse}
+    @keyframes float{0%,100%{transform:translateY(0) translateX(0)}50%{transform:translateY(-20px) translateX(12px)}}
+
+    header{position:fixed;inset:0 0 auto 0;z-index:20;background:rgba(247,249,252,.76);backdrop-filter:blur(18px);border-bottom:1px solid rgba(16,33,74,.06)}
+    nav{height:76px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:-.03em}
+    .brand img{width:42px;height:42px;object-fit:contain}
+    .brand span{font-size:18px}
+    .brand em{font-style:normal;color:var(--purple)}
+    .nav-links{display:flex;gap:28px;align-items:center;color:#42506b;font-weight:600;font-size:14px}
+    .nav-links a{transition:.25s ease}
+    .nav-links a:hover{color:var(--purple);transform:translateY(-1px)}
+    .nav-cta{padding:11px 17px;border-radius:999px;background:var(--navy);color:#fff!important;box-shadow:0 10px 24px rgba(8,19,47,.18)}
+    .menu{display:none;border:0;background:transparent;color:var(--navy);font-size:27px;cursor:pointer}
+
+    .hero{position:relative;min-height:850px;display:flex;align-items:center;padding:130px 0 90px;overflow:hidden;background:radial-gradient(circle at 78% 22%,rgba(45,124,255,.11),transparent 28%),radial-gradient(circle at 18% 32%,rgba(118,40,232,.10),transparent 25%),linear-gradient(180deg,#f8faff 0%,#eef3fb 100%)}
+    .grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(16,33,74,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(16,33,74,.035) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.8),transparent 92%);z-index:0}
+    .hero-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.06fr .94fr;gap:58px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid rgba(118,40,232,.18);border-radius:999px;background:rgba(255,255,255,.68);color:#5d3b96;font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:22px}
+    .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--cyan));box-shadow:0 0 0 5px rgba(118,40,232,.08)}
+    h1{font-size:clamp(44px,6vw,76px);line-height:.98;letter-spacing:-.055em;max-width:760px}
+    .gradient-text{background:linear-gradient(100deg,var(--purple),var(--blue) 55%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero-copy{font-size:19px;color:var(--muted);max-width:630px;margin:24px 0 30px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 21px;border-radius:14px;font-weight:800;font-size:14px;border:1px solid transparent;transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+    .btn:hover{transform:translateY(-3px)}
+    .btn-primary{background:var(--navy);color:#fff;box-shadow:0 16px 35px rgba(8,19,47,.20)}
+    .btn-primary:hover{box-shadow:0 22px 42px rgba(8,19,47,.24)}
+    .btn-ghost{background:rgba(255,255,255,.70);border-color:var(--line);color:var(--ink)}
+    .btn-ghost:hover{background:#fff;box-shadow:0 14px 26px rgba(8,19,47,.08)}
+    .trust-row{display:flex;gap:30px;margin-top:36px;padding-top:26px;border-top:1px solid var(--line);max-width:650px}
+    .trust-stat strong{display:block;font-size:22px;letter-spacing:-.03em}
+    .trust-stat span{font-size:12px;color:var(--muted)}
+
+    .visual-wrap{position:relative;min-height:530px;display:grid;place-items:center}
+    .orb{position:absolute;width:440px;height:440px;border-radius:50%;background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.95),rgba(227,235,255,.68) 42%,rgba(201,217,255,.25) 66%,transparent 68%);box-shadow:inset 0 0 90px rgba(45,124,255,.06),0 40px 90px rgba(24,67,145,.10);animation:orb 7s ease-in-out infinite}
+    @keyframes orb{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+    .logo-card{position:relative;width:min(420px,94%);padding:28px;border-radius:32px;background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.9);box-shadow:var(--shadow);backdrop-filter:blur(18px);transform:rotate(2.5deg);animation:cardFloat 6s ease-in-out infinite}
+    @keyframes cardFloat{0%,100%{transform:translateY(0) rotate(2.5deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+    .logo-card img{width:100%;display:block;border-radius:20px}
+    .chip{position:absolute;padding:9px 13px;border-radius:999px;background:#fff;box-shadow:0 10px 28px rgba(8,19,47,.12);border:1px solid var(--line);font-weight:800;font-size:12px}
+    .chip.one{left:0;top:26%;animation:chip1 5s ease-in-out infinite}
+    .chip.two{right:-4px;top:16%;animation:chip2 5.5s ease-in-out infinite}
+    .chip.three{right:4%;bottom:14%;animation:chip3 6s ease-in-out infinite}
+    @keyframes chip1{50%{transform:translate(-5px,-8px)}}
+    @keyframes chip2{50%{transform:translate(5px,-10px)}}
+    @keyframes chip3{50%{transform:translate(3px,7px)}}
+
+    section{padding:105px 0;position:relative}
+    .section-kicker{font-size:12px;text-transform:uppercase;letter-spacing:.14em;font-weight:900;color:var(--purple);margin-bottom:10px}
+    .section-title{font-size:clamp(34px,4vw,52px);line-height:1.03;letter-spacing:-.045em;max-width:760px}
+    .section-desc{color:var(--muted);max-width:670px;margin-top:15px;font-size:17px}
+
+    .services{background:#fff}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
+    .service{padding:28px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(145deg,#fff,#f8faff);transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;position:relative;overflow:hidden}
+    .service:before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;background:rgba(45,124,255,.09);right:-55px;top:-55px;transition:.35s ease}
+    .service:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(8,19,47,.10);border-color:rgba(45,124,255,.22)}
+    .service:hover:before{transform:scale(1.35)}
+    .icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,rgba(118,40,232,.12),rgba(22,182,223,.12));font-size:24px;margin-bottom:20px}
+    .service h3{font-size:20px;margin-bottom:9px;letter-spacing:-.02em}
+    .service p{font-size:14px;color:var(--muted)}
+    .service a{display:inline-flex;margin-top:18px;font-size:13px;font-weight:800;color:var(--purple)}
+
+    .about{background:linear-gradient(180deg,#f7f9fc,#eef4fb)}
+    .about-grid{display:grid;grid-template-columns:.86fr 1.14fr;gap:58px;align-items:start}
+    .about-panel{padding:32px;border-radius:28px;background:var(--navy);color:#fff;overflow:hidden;position:relative;min-height:350px;box-shadow:0 25px 70px rgba(8,19,47,.20)}
+    .about-panel:before,.about-panel:after{content:"";position:absolute;border-radius:50%;filter:blur(10px)}
+    .about-panel:before{width:260px;height:260px;background:rgba(118,40,232,.42);right:-90px;top:-70px}
+    .about-panel:after{width:230px;height:230px;background:rgba(22,182,223,.30);left:-90px;bottom:-100px}
+    .about-panel > *{position:relative;z-index:1}
+    .about-panel .mini{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:#b8c9f8;font-weight:900}
+    .about-panel h3{font-size:34px;line-height:1.05;letter-spacing:-.04em;margin:18px 0}
+    .about-panel p{color:#c8d4ef;max-width:420px}
+    .about-badge{position:absolute;right:26px;bottom:24px;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);font-weight:800;font-size:13px}
+    .checks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:32px}
+    .check{display:flex;gap:11px;align-items:flex-start}
+    .check .tick{width:22px;height:22px;flex:0 0 auto;border-radius:50%;display:grid;place-items:center;background:rgba(118,40,232,.10);color:var(--purple);font-size:12px;font-weight:900}
+    .check span{font-size:14px;color:#4b5870}
+
+    .process{background:#fff}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:42px}
+    .step{padding:26px;border-radius:22px;border:1px solid var(--line);position:relative;background:#fff;transition:.28s ease}
+    .step:hover{transform:translateY(-6px);box-shadow:0 18px 35px rgba(8,19,47,.08)}
+    .step-number{font-size:44px;font-weight:900;letter-spacing:-.07em;background:linear-gradient(120deg,var(--purple),var(--cyan));-webkit-background-clip:text;color:transparent;line-height:1}
+    .step h4{font-size:17px;margin:17px 0 7px}.step p{font-size:13px;color:var(--muted)}
+
+    .contact{padding-top:80px}
+    .contact-box{border-radius:32px;padding:44px;background:linear-gradient(125deg,var(--navy),#152a5e);color:#fff;display:flex;justify-content:space-between;align-items:center;gap:26px;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(8,19,47,.20)}
+    .contact-box:before{content:"";position:absolute;width:310px;height:310px;border-radius:50%;background:rgba(118,40,232,.24);right:7%;top:-160px}
+    .contact-box:after{content:"";position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(22,182,223,.16);left:44%;bottom:-160px}
+    .contact-box > *{position:relative;z-index:1}
+    .contact-box h2{font-size:clamp(30px,4vw,48px);line-height:1.02;letter-spacing:-.04em;max-width:660px}
+    .contact-box p{color:#c9d5ed;margin-top:12px}.email{display:inline-flex;margin-top:18px;color:#fff;font-weight:800}
+    .contact .btn{background:#fff;color:var(--navy);white-space:nowrap}
+
+    footer{padding:36px 0 48px;background:#fff}
+    .footer-row{display:flex;align-items:center;justify-content:space-between;gap:20px;color:#71809a;font-size:13px}
+    .footer-brand{display:flex;gap:10px;align-items:center;font-weight:900;color:var(--navy)}
+    .footer-brand img{width:30px;height:30px;object-fit:contain}
+
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+    .reveal.visible{opacity:1;transform:none}
+    .cursor-glow{position:fixed;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(45,124,255,.10),transparent 68%);pointer-events:none;z-index:1;transform:translate(-50%,-50%);mix-blend-mode:multiply}
+
+    @media (max-width: 900px){
+      .nav-links{position:absolute;top:76px;right:20px;left:20px;display:none;flex-direction:column;align-items:stretch;padding:18px;border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.95);box-shadow:0 20px 50px rgba(8,19,47,.12)}
+      .nav-links.open{display:flex}.nav-links a{padding:10px 8px}.nav-cta{text-align:center}
+      .menu{display:block}
+      .hero{min-height:auto;padding-bottom:75px}.hero-grid,.about-grid{grid-template-columns:1fr;gap:42px}.visual-wrap{min-height:470px}
+      .cards{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr 1fr}.contact-box{flex-direction:column;align-items:flex-start}
+    }
+    @media (max-width: 640px){
+      .container{width:min(100% - 28px,1160px)}nav{height:68px}.nav-links{top:68px}
+      .brand span{font-size:16px}.brand img{width:36px;height:36px}
+      h1{font-size:46px}.hero-copy{font-size:16px}.trust-row{gap:22px;flex-wrap:wrap}.visual-wrap{min-height:390px}.orb{width:330px;height:330px}.logo-card{width:320px;padding:20px}.chip{font-size:10px;padding:8px 10px}.chip.one{left:2px}.chip.two{right:-6px}
+      section{padding:78px 0}.cards,.steps,.checks{grid-template-columns:1fr}.about-panel{min-height:320px}.contact-box{padding:32px 24px;border-radius:26px}
+      .footer-row{flex-direction:column;align-items:flex-start}.cursor-glow{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="cursor-glow" id="cursorGlow"></div>
+  <header>
+    <div class="container">
+      <nav>
+        <a href="#top" class="brand"><img src="assets/mark.png" alt="SAHA Solutions logo mark"><span>SAHA <em>Solutions</em></span></a>
+        <button class="menu" id="menu" aria-label="Open menu">☰</button>
+        <div class="nav-links" id="navLinks">
+          <a href="#services">Services</a>
+          <a href="#about">About</a>
+          <a href="#process">Process</a>
+          <a class="nav-cta" href="mailto:admin@sahasolutions.in?subject=Project%20Enquiry">Let's Talk</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="grid-bg"></div><div class="blob a"></div><div class="blob b"></div>
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow"><span class="dot"></span> IT Solutions • Web • Software</div>
+          <h1>Digital products that <span class="gradient-text">move business forward.</span></h1>
+          <p class="hero-copy">SAHA Solutions builds modern websites, web apps and custom software that look sharp, work fast and help businesses scale with confidence.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="mailto:admin@sahasolutions.in?subject=Project%20Enquiry">Start a Project <span>↗</span></a>
+            <a class="btn btn-ghost" href="#services">Explore Services <span>↓</span></a>
+          </div>
+          <div class="trust-row">
+            <div class="trust-stat"><strong>Web</strong><span>Fast, responsive builds</span></div>
+            <div class="trust-stat"><strong>Software</strong><span>Built around your workflow</span></div>
+            <div class="trust-stat"><strong>Support</strong><span>From idea to launch</span></div>
+          </div>
+        </div>
+
+        <div class="visual-wrap reveal">
+          <div class="orb"></div>
+          <div class="logo-card">
+            <img src="assets/logo.png" alt="SAHA Solutions brand logo">
+          </div>
+          <div class="chip one">⚡ Performance</div>
+          <div class="chip two">✦ Clean UI</div>
+          <div class="chip three">◎ Scalable Code</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" id="services">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-kicker">What we build</div>
+          <h2 class="section-title">Technology that feels <span class="gradient-text">simple.</span></h2>
+          <p class="section-desc">From landing pages to business software, we combine thoughtful design with reliable engineering.</p>
+        </div>
+        <div class="cards">
+          <article class="service reveal"><div class="icon">⌘</div><h3>Website Development</h3><p>Modern, responsive websites designed to build trust, explain your value and convert visitors into customers.</p><a href="mailto:admin@sahasolutions.in?subject=Website%20Development">Discuss a website →</a></article>
+          <article class="service reveal"><div class="icon">◈</div><h3>Web Applications</h3><p>Powerful dashboards, portals and customer-facing web apps with smooth experiences across devices.</p><a href="mailto:admin@sahasolutions.in?subject=Web%20Application">Discuss a web app →</a></article>
+          <article class="service reveal"><div class="icon">⌘</div><h3>Custom Software</h3><p>Purpose-built software that fits your process instead of forcing your team to change the way they work.</p><a href="mailto:admin@sahasolutions.in?subject=Custom%20Software">Discuss software →</a></article>
+          <article class="service reveal"><div class="icon">↗</div><h3>UI / UX Design</h3><p>Clean interfaces, intuitive flows and a visual system that makes your product easier to understand.</p><a href="mailto:admin@sahasolutions.in?subject=UI%20UX%20Design">Discuss design →</a></article>
+          <article class="service reveal"><div class="icon">◌</div><h3>Business Automation</h3><p>Reduce repetitive work with digital workflows, integrations and smart tools built for your operations.</p><a href="mailto:admin@sahasolutions.in?subject=Business%20Automation">Discuss automation →</a></article>
+          <article class="service reveal"><div class="icon">✓</div><h3>Maintenance & Support</h3><p>Keep your digital products secure, updated and performing well after launch.</p><a href="mailto:admin@sahasolutions.in?subject=Maintenance%20Support">Talk about support →</a></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-panel reveal">
+          <div class="mini">SAHA Solutions</div>
+          <h3>Built for ideas that deserve better technology.</h3>
+          <p>We turn business goals into focused digital products — balancing strong engineering, clean design and practical thinking.</p>
+          <div class="about-badge">Web + Software</div>
+        </div>
+        <div class="reveal">
+          <div class="section-kicker">Why SAHA</div>
+          <h2 class="section-title">Less complexity. More <span class="gradient-text">clarity.</span></h2>
+          <p class="section-desc">A good digital product should be easy to use, easy to maintain and aligned with what your business actually needs.</p>
+          <div class="checks">
+            <div class="check"><div class="tick">✓</div><span>Responsive and mobile-first experiences</span></div>
+            <div class="check"><div class="tick">✓</div><span>Clean, maintainable development</span></div>
+            <div class="check"><div class="tick">✓</div><span>Modern UI with purposeful motion</span></div>
+            <div class="check"><div class="tick">✓</div><span>Solutions shaped around your goals</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="process">
+      <div class="container">
+        <div class="reveal">
+          <div class="section-kicker">How we work</div>
+          <h2 class="section-title">From <span class="gradient-text">idea → launch.</span></h2>
+          <p class="section-desc">A clear, collaborative process keeps projects moving without unnecessary layers.</p>
+        </div>
+        <div class="steps">
+          <div class="step reveal"><div class="step-number">01</div><h4>Discover</h4><p>Understand your goals, users, requirements and the problem worth solving.</p></div>
+          <div class="step reveal"><div class="step-number">02</div><h4>Design</h4><p>Create a clean experience and visual direction before development begins.</p></div>
+          <div class="step reveal"><div class="step-number">03</div><h4>Build</h4><p>Develop, test and refine the product with performance and usability in mind.</p></div>
+          <div class="step reveal"><div class="step-number">04</div><h4>Launch</h4><p>Go live smoothly, measure what matters and keep improving after launch.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container">
+        <div class="contact-box reveal">
+          <div>
+            <div class="section-kicker" style="color:#aebcff">Ready when you are</div>
+            <h2>Have a project in mind? <span class="gradient-text">Let's build it.</span></h2>
+            <p>Tell us what you want to create and we’ll take it from there.</p>
+            <a class="email" href="mailto:admin@sahasolutions.in">admin@sahasolutions.in</a>
+          </div>
+          <a class="btn" href="mailto:admin@sahasolutions.in?subject=Project%20Enquiry">Contact SAHA Solutions ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-row">
+      <div class="footer-brand"><img src="assets/mark.png" alt=""> SAHA Solutions</div>
+      <div>© <span id="year"></span> SAHA Solutions. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    const menu=document.getElementById('menu');
+    const navLinks=document.getElementById('navLinks');
+    menu.addEventListener('click',()=>navLinks.classList.toggle('open'));
+    document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
+
+    const observer=new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{if(entry.isIntersecting) entry.target.classList.add('visible')});
+    },{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+    const glow=document.getElementById('cursorGlow');
+    window.addEventListener('pointermove',(e)=>{
+      glow.style.left=e.clientX+'px';
+      glow.style.top=e.clientY+'px';
+    });
+
+    document.getElementById('year').textContent=new Date().getFullYear();
+  </script>
+</body>
+</html>
